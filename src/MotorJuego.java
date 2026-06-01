@@ -35,4 +35,29 @@ public class MotorJuego {
             }
         }
     }
+    // Funcionalidad Avanzada 1: Detector de Colisiones Simple
+    public void detectarColisiones(Jugador jugador) {
+        for (EntidadVideojuego e : entidades) {
+            if (!e.equals(jugador)) { // No comparar al jugador consigo mismo
+                boolean colisionX = jugador.getX() < e.getX() + e.getW() && jugador.getX() + jugador.getW() > e.getX();
+                boolean colisionY = jugador.getY() < e.getY() + e.getH() && jugador.getY() + jugador.getH() > e.getY();
+                
+                if (colisionX && colisionY) {
+                    System.out.println("¡ALERTA CRÍTICA! Colisión detectada entre " + jugador.getNombre() + " y " + e.getNombre());
+                    jugador.setVida(jugador.getVida() - 20);
+                    System.out.println("Vida del jugador reducida a: " + jugador.getVida());
+                }
+            }
+        }
+    }
+    // Funcionalidad Avanzada 2: Guardado Rápido Simulado
+    public void guardadoRapido(Jugador jugador) {
+        System.out.println("--- INICIANDO GUARDADO RÁPIDO ---");
+        String datosGuardado = String.format(
+            "{\"estado\": \"%s\", \"jugador_x\": %d, \"jugador_y\": %d, \"vida\": %d, \"puntuacion\": %d}",
+            estado, jugador.getX(), jugador.getY(), jugador.getVida(), jugador.getPuntuacion()
+        );
+        System.out.println("Datos exportados (JSON Simulado): " + datosGuardado);
+        System.out.println("Partida guardada con éxito.");
+    }
 }

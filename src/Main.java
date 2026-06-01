@@ -26,5 +26,9 @@ public class Main {
         // Pausamos
         input.simularPulsacion("PAUSAR", motor, jugador);
         motor.actualizar(); // Esto debería bloquearse porque está en pausa
-    }
+
+        // Simulamos las funciones avanzadas
+        motor.detectarColisiones(jugador);
+        motor.guardadoRapido(jugador);
+    } 
 }
